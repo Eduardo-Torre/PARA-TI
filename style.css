@@ -1,0 +1,632 @@
+/*=========================================
+              PARA TI
+      Diseño cinematográfico
+=========================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    background:#000;
+
+    color:white;
+
+    font-family:'Segoe UI', sans-serif;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
+
+}
+
+
+
+/*=========================================
+              ESTRELLAS
+=========================================*/
+
+
+#estrellas{
+
+    position:fixed;
+
+    width:100%;
+
+    height:100%;
+
+    top:0;
+
+    left:0;
+
+    overflow:hidden;
+
+    z-index:-1;
+
+}
+
+
+
+.estrella{
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation-name:
+    subirEstrella,
+    brillar;
+
+    animation-timing-function:
+    linear,
+    ease-in-out;
+
+    animation-iteration-count:
+    infinite,
+    infinite;
+
+    animation-direction:
+    normal,
+    alternate;
+
+}
+
+
+
+@keyframes subirEstrella{
+
+    from{
+        transform:translateY(100vh);
+    }
+
+
+    to{
+        transform:translateY(-20vh);
+    }
+
+}
+
+
+
+@keyframes brillar{
+
+    from{
+        opacity:.2;
+    }
+
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+
+/*=========================================
+              PAGINAS
+=========================================*/
+
+
+main{
+
+    width:100%;
+
+}
+
+
+
+.pagina{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    min-height:100vh;
+
+    height:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateY(40px);
+
+    transition:2s ease;
+
+}
+
+
+
+.pagina.activa{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:translateY(0);
+
+}
+
+
+
+/*=========================================
+              CONTENIDO
+=========================================*/
+
+
+.contenido{
+
+    width:90%;
+
+    max-width:800px;
+
+    padding-top:40px;
+
+    padding-bottom:40px;
+
+}
+
+
+
+.pagina .contenido{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:2s ease;
+
+}
+
+
+
+.pagina.activa .contenido{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+
+/*=========================================
+              TEXTO
+=========================================*/
+
+
+.frase{
+
+    display:block;
+
+    color:#888;
+
+    font-size:14px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:40px;
+
+}
+
+
+
+h1{
+
+    font-size:80px;
+
+    font-weight:200;
+
+    letter-spacing:10px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+p{
+
+    color:#d2d2d2;
+
+    font-size:20px;
+
+    line-height:38px;
+
+    margin-bottom:50px;
+
+}
+
+
+
+/*=========================================
+              BOTONES
+=========================================*/
+
+
+button{
+
+    padding:18px 60px;
+
+    border-radius:50px;
+
+    border:1px solid white;
+
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.5s;
+
+}
+
+
+
+button:hover{
+
+    background:white;
+
+    color:black;
+
+    transform:translateY(-5px);
+
+}
+
+
+
+/*=========================================
+              IMAGEN NORMAL
+=========================================*/
+
+
+.foto-recuerdo{
+
+    margin:30px auto;
+
+}
+
+
+
+.foto-recuerdo img{
+
+    width:280px;
+
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    transition:.5s;
+
+}
+
+
+
+.foto-recuerdo img:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+/*=========================================
+              VIDEO
+=========================================*/
+
+
+.video-recuerdo{
+
+    margin:35px auto;
+
+    animation:aparecerVideo 2s ease;
+
+}
+
+
+
+.video-recuerdo video{
+
+    width:420px;
+
+    max-width:85vw;
+
+    max-height:55vh;
+
+    border-radius:20px;
+
+    object-fit:contain;
+
+    box-shadow:0 0 30px rgba(255,255,255,.15);
+
+}
+
+
+
+@keyframes aparecerVideo{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.85);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+
+
+/*=========================================
+              COLLAGE RECUERDOS
+=========================================*/
+
+
+.collage{
+
+    position:relative;
+
+    width:600px;
+
+    max-width:95%;
+
+    height:420px;
+
+    margin:35px auto;
+
+    animation:aparecerCollage 2s ease;
+
+}
+
+
+
+.collage img{
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    box-shadow:0 0 30px rgba(255,255,255,.25);
+
+    transition:.5s;
+
+}
+
+
+
+
+
+/* ARRIBA */
+
+
+.collage img:nth-child(1){
+
+    left:40px;
+
+    top:35px;
+
+    transform:rotate(-10deg);
+
+}
+
+
+
+.collage img:nth-child(2){
+
+    left:215px;
+
+    top:10px;
+
+    transform:rotate(5deg);
+
+}
+
+
+
+.collage img:nth-child(3){
+
+    right:55px;
+
+    top:35px;
+
+    transform:rotate(10deg);
+
+}
+
+
+
+
+
+/* ABAJO */
+
+
+.collage img:nth-child(4){
+
+    left:55px;
+
+    bottom:10px;
+
+    transform:rotate(8deg);
+
+}
+
+
+
+.collage img:nth-child(5){
+
+    left:220px;
+
+    bottom:0;
+
+    transform:rotate(-6deg);
+
+}
+
+
+
+.collage img:nth-child(6){
+
+    right:55px;
+
+    bottom:10px;
+
+    transform:rotate(10deg);
+
+}
+
+
+
+
+
+.collage img:hover{
+
+    transform:scale(1.12) rotate(0deg);
+
+    z-index:5;
+
+}
+
+
+
+@keyframes aparecerCollage{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+
+
+/*=========================================
+              CELULAR
+=========================================*/
+
+
+@media(max-width:768px){
+
+
+    h1{
+
+        font-size:45px;
+
+        letter-spacing:5px;
+
+    }
+
+
+
+    p{
+
+        font-size:17px;
+
+        line-height:30px;
+
+    }
+
+
+
+    .frase{
+
+        font-size:10px;
+
+    }
+
+
+
+    button{
+
+        padding:15px 40px;
+
+    }
+
+
+
+    .video-recuerdo video{
+
+        width:95%;
+
+        max-height:45vh;
+
+    }
+
+
+
+    .collage{
+
+        height:430px;
+
+    }
+
+
+
+    .collage img{
+
+        width:120px;
+
+        height:120px;
+
+    }
+
+
+}

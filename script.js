@@ -2,186 +2,144 @@
           CREAR ESTRELLAS
 =========================================*/
 
-
 const fondo = document.getElementById("estrellas");
-
-
 const cantidadEstrellas = 180;
 
+for (let i = 0; i < cantidadEstrellas; i++) {
 
-
-for(let i = 0; i < cantidadEstrellas; i++){
-
-
-    let estrella = document.createElement("span");
-
+    const estrella = document.createElement("span");
 
     estrella.classList.add("estrella");
 
+    estrella.style.left = Math.random() * 100 + "%";
+    estrella.style.top = Math.random() * 100 + "%";
 
+    const tamaño = Math.random() * 3 + 1;
 
-    estrella.style.left =
-    Math.random()*100 + "%";
+    estrella.style.width = tamaño + "px";
+    estrella.style.height = tamaño + "px";
 
+    const movimiento = Math.random() * 25 + 10;
+    const brillo = Math.random() * 4 + 2;
 
+    estrella.style.animationDuration = `${movimiento}s, ${brillo}s`;
 
-    estrella.style.top =
-    Math.random()*100 + "%";
-
-
-
-    let tamaño =
-    Math.random()*3 + 1;
-
-
-
-    estrella.style.width =
-    tamaño+"px";
-
-
-    estrella.style.height =
-    tamaño+"px";
-
-
-
-    let movimiento =
-    Math.random()*25 + 10;
-
-
-
-    let brillo =
-    Math.random()*4 + 2;
-
-
-
-    estrella.style.animationDuration =
-    movimiento+"s, "+brillo+"s";
-
-
-
-    estrella.style.opacity =
-    Math.random();
-
-
+    estrella.style.opacity = Math.random();
 
     fondo.appendChild(estrella);
-
 
 }
 
 
-
-
-
-
-
 /*=========================================
-          CAMBIO DE CAPITULOS
+          CAMBIO DE CAPÍTULOS
 =========================================*/
 
-
 const paginas = document.querySelectorAll(".pagina");
-
 
 let actual = 0;
 
 
+/* Muestra una página */
+function mostrarPagina(indice) {
 
+    if (indice < 0 || indice >= paginas.length) return;
 
-function siguientePagina(){
+    paginas.forEach(pagina => {
+        pagina.classList.remove("activa");
+    });
 
+    paginas[indice].classList.add("activa");
 
-    paginas[actual].classList.remove("activa");
+    actual = indice;
 
-
-
-    actual++;
-
-
-
-
-    if(actual < paginas.length){
-
-
-        paginas[actual].classList.add("activa");
-
-
-    }
-
+    // Llevar siempre al inicio del nuevo capítulo
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
+/* Botón Continuar */
+function siguientePagina() {
 
+    if (actual < paginas.length - 1) {
 
+        mostrarPagina(actual + 1);
 
+    }
+
+}
 
 
 /*=========================================
-          INICIAR PAGINA + MUSICA
+          INICIAR + MÚSICA
 =========================================*/
 
+function iniciarPagina() {
 
-function iniciarPagina(){
+    const musica = document.getElementById("musica");
 
-
-    let musica = document.getElementById("musica");
-
-
-
-    if(musica){
-
+    if (musica) {
 
         musica.volume = 0.25;
 
-
-        musica.play();
-
+        // Evita errores del navegador si bloquea autoplay
+        musica.play().catch(() => {});
 
     }
 
-
-
-    siguientePagina();
-
+    // Abre directamente el Capítulo I
+    mostrarPagina(1);
 
 }
 
 
-
-
-
-
-
 /*=========================================
-        EFECTOS BOTONES
+          EFECTO BOTONES
 =========================================*/
-
 
 const botones = document.querySelectorAll("button");
 
+botones.forEach(boton => {
 
+    boton.addEventListener("mouseenter", () => {
 
-botones.forEach(boton=>{
-
-
-    boton.addEventListener("mouseenter",()=>{
-
-
-        boton.style.letterSpacing="2px";
-
+        boton.style.letterSpacing = "2px";
 
     });
 
+    boton.addEventListener("mouseleave", () => {
 
-
-    boton.addEventListener("mouseleave",()=>{
-
-
-        boton.style.letterSpacing="0";
-
+        boton.style.letterSpacing = "0";
 
     });
 
+});
+
+
+/*=========================================
+      REPRODUCIR VIDEO AL ENTRAR
+=========================================*/
+
+const video = document.querySelector("video");
+
+if (video) {
+
+    video.setAttribute("playsinline", "");
+    video.setAttribute("preload", "metadata");
+
+}
+
+
+/*=========================================
+      ASEGURAR INICIO ARRIBA
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    window.scrollTo(0, 0);
 
 });
